@@ -1,0 +1,28 @@
+.Field {
+  flex-grow: 1;
+  max-height: 50%;
+  padding: 20px;
+  box-sizing: content-box;
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Field_Editable {
+  margin-top: 10px;
+  flex-grow: 1;
+  overflow: auto;
+  resize: none;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+
+  outline: none;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+}
