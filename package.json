@@ -2,7 +2,8 @@
   "name": "converter",
   "version": "0.0.1",
   "scripts": {
-    "serve": "parcel ./src/index.html"
+    "serve": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html --public-url ./"
   },
   "dependencies": {
     "@msgpack/msgpack": "^2.3.0",
