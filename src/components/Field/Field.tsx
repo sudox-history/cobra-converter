@@ -5,6 +5,7 @@ import "./Field.css"
 interface Props {
   title: string,
   onReady: (value: string) => void,
+  onFormat?: (value: string) => void,
 }
 
 export default class Field extends React.Component<Props> {
@@ -19,6 +20,11 @@ export default class Field extends React.Component<Props> {
   }
 
   private handleKeyDown(event: React.KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.altKey && event.ctrlKey && event.code == "KeyL") {
+      this.props.onFormat?.(this.textArea.current.value)
+      return
+    }
+
     if (event.code == "Tab") {
       event.preventDefault()
 
