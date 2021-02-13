@@ -28,14 +28,14 @@ export default function App() {
 
   function handleJsonFieldFormatting(value: string) {
     try {
-      jsonField.current.setValue(JSON.stringify(JSON.parse(value), null, 8));
+      jsonField.current.setValue(JSON.stringify(JSON.parse(value), null, "\t"));
     } catch (e) {}
   }
 
   function handleMsgPackField(value: string) {
     formatMsgPackField(value)
     try {
-      jsonField.current.setValue(JSON.stringify(decode(fromHexString(value).slice(2)), null, 8));
+      jsonField.current.setValue(JSON.stringify(decode(fromHexString(value).slice(2)), null, "\t"));
     } catch (e) {
       jsonField.current.setValue("")
     }
