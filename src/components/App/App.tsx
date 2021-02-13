@@ -10,7 +10,17 @@ export default function App() {
 
   function handleJsonField(value: string) {
     try {
-      msgpackField.current.setValue(toHexString(encode(JSON.parse(value))))
+      let bytes = encode(JSON.parse(value));
+      let header = new Uint8Array(2)
+
+      let view = new DataView(header.buffer)
+      view.setUint16(0, bytes.length);
+
+      let result = new Uint8Array(bytes.length + header.length)
+      result.set(header)
+      result.set(bytes, header.length)
+
+      msgpackField.current.setValue(toHexString(result))
     } catch (e) {
       msgpackField.current.setValue("")
     }
@@ -19,7 +29,7 @@ export default function App() {
   function handleMsgPackField(value: string) {
     formatMsgPackField(value)
     try {
-      jsonField.current.setValue(JSON.stringify(decode(fromHexString(value)), null, 4));
+      jsonField.current.setValue(JSON.stringify(decode(fromHexString(value).slice(2)), null, 4));
     } catch (e) {
       jsonField.current.setValue("")
     }
@@ -32,7 +42,7 @@ export default function App() {
   return (
     <div className="App">
       <Field ref={jsonField} title="JSON input:" onReady={handleJsonField}/>
-      <Field ref={msgpackField} title="MsgPack output:" onReady={handleMsgPackField}/>
+      <Field ref={msgpackField} title="Cobra packet:" onReady={handleMsgPackField}/>
     </div>
   );
 }
