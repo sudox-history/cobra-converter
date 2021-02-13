@@ -1,5 +1,5 @@
-# msgpack-converter
-Simple utility to convert JSON to MsgPack (and back)
+# cobra-converter
+Simple utility to convert JSON to Cobra (and back)
 
 ### Setup and run
 Just run following commands:
